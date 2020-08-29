@@ -1,20 +1,24 @@
+from itertools import product
 class Band:
     band_list = []
 
     def __init__(self, name, members):
         self.name = name
         self.members = members
-        self.band_list.append(self)
+        Band.band_list.append(name)
 
-    def play_solos(self, name):
-        return [play_solos for member in self.members]
+    def play_solos(self):
+        play = ['Start banging ur instrument']
+        return (list(product(self.members,play)))
 
     def __str__(self):
         return f"band(name:{self.name},member:{self.members})"
 
     def __repr__(self):
         return f"'name':{self.name},'members' :{self.members}"
-
+    @staticmethod
+    def to_list():
+        return Band.band_list
 
 class Muscians:
     def __init__(self, name):
@@ -95,8 +99,13 @@ if __name__ == "__main__":
     print(ahmad.play_solo())
     print(ahmad.get_instrument())
     band1 = (Band("Pandora Box", [ahmad,bashar, samer, saed]))
-    for member in band1.members:
-        print("Name: ", member.name)
-        print("Member: ", member)
+    # for member in band1.members:
+    #     print("Name: ", member.name)
+    #     print("Member: ", member)
+    me = Guitarest('Potato1')
+    myself = Bassist('Potato2')
+    i = Drummer('Potato3')
+    band2=(Band('Linkin Node',[me,myself,i]))
     print(band1.band_list)
-
+    print('The play solos method',band1.play_solos())
+    print('this is the to_list method',Band.to_list())
